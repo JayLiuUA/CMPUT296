@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+body{
+    position: absolute;
+    left: 220px;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    line-height: 70px;
+    color:#bbc8d8;
+    background-color: #313943;
+    min-width:920px;
+    border-top:50px solid #0c0e0e;
+    border-bottom:50px solid #0c0e0e;
+    font-size: 130%;
+}
+h1 {
+    color: #fff;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 100px;
+	font-weight: 700;
+	line-height: 72px;
+	margin-bottom: 48px;
+    text-align: center;
+    border-bottom: 3px solid #e66c7e;
+}
+h1:after {
+	color: #1fcfcb;
+	display: block;
+	content: '. . . . . .';
+	font-size: 26px;
+	line-height: 24px;
+	height: 24px;
+	margin: 48px auto;
+}
+h2 {
+    color: rgb(255, 236, 236);
+}
+p{
+    border-bottom: 3px solid #e66c7e;
+}
+#float_my_photo {
+    float: right;
+    padding: 5px;
+}
+#float_my_name {
+    float: left;
+}
+#my_photo_style{
+    border-radius: 50%;
+    width: 300px;
+    height: 400px;
+}
+figcaption{
+    font-size: 75%;
+    line-height: 30px;
+    text-align: center;
+    color: #9cb6d6;
+}
+#my_name_style{
+    border-radius: 50%;
+    width:200px;
+    height: 200px;
+}
+#sidebar {
+    position: fixed;
+    top: 30%;
+    left: 8px;
+    bottom: 30%;
+    width: 200px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+    border-bottom: 30px solid #313943;
+}
+li:last-child {
+    border: none;
+}
+li a {
+    text-decoration: none;
+    color: rgb(230, 227, 227);
+    display: block;
+    width: 200px;
+
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+li a:hover {
+    font-size: 22px;
+    background:rgb(187, 184, 184);
+}
+a {
+    color: #999;
+    border-bottom: 2px solid #666;
+	display: inline-block;
+	font-family: 'Source Sans Pro';
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	line-height: 24px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+a:hover {
+	color: #fff;
+	border-bottom: 2px solid #fff;
+}
+.footer_style {
+    font-size: 0.95rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}

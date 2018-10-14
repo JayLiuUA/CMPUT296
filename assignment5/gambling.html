@@ -1,0 +1,318 @@
+<!--
+Collaborating Student: Yuan Wang
+Sources:
+Joshua Campbell, CMPUT 296 assignment 4 gambling.html
+assignment 5 description on Eclass
+card image from https://en.wikipedia.org/wiki/Blackjack#/media/File:BlackJack6.jpg
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Free Gambling</title>
+  <meta charset="UTF-8" />
+  <style>
+  body {
+  	background-color: #FBF2DA;
+  	font-size: 20px;
+  	color: #39CCCC;
+  	text-align: center;
+  }
+
+  h1 {
+  	color: white;
+  	font-family: Impact, Charcoal, sans-serif;
+  	text-align: center;
+  	text-shadow: 5px 5px 1px #e66c7e;
+  	font-size: 60px;
+  }
+
+  #rules {
+  	text-align: center;
+  	color: #3D9970;
+  }
+
+  label {
+  	display: block;
+  }
+
+
+  footer {
+  	text-align: left;
+  }
+
+  #card {
+  	width: 500px;
+  	height: 400px;
+  }
+
+  button{
+  	font-size: 15px;
+  	font-weight: bold;
+  }
+
+  </style>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone/babel.js"></script>
+
+</head>
+
+<body>
+  <h1>Rules</h1>
+  <p id = "rules">If you are not familiar with this game, you may refer
+    <a href="https://en.wikipedia.org/wiki/Blackjack">Blackjack-Wikipedia</a> for more information.
+    <br/><br/>
+    <img id="card" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/BlackJack6.jpg/2560px-BlackJack6.jpg" alt="Cards"/>
+  </p>
+
+  <h1>Black Jack Time!!</h1>
+
+  <div id="root"> </div>
+
+  <script type="text/babel">
+  class Gambler extends React.Component {
+      constructor(props) {
+          super(props);
+
+          var session = localStorage.getItem('session');
+          if (session == null) {
+              this.state = {
+              url: "https://pizza.cs.ualberta.ca/296/",
+              token: "tpYCGn9+pPJuG4jN4n5VPm4K86THIpS/KzIYpViOfXY=",
+              status: "",
+              session: "",
+              money: "",
+              bet_amount: "",
+              result: "",
+              bet: "",
+              made: "",
+              dealer_card:[],
+              player_hand:[],
+              place:false,
+              enter_money:false,
+              stand:true,
+              hit:true,
+              double_down:true,
+              surrender:true };
+
+              this.post_request('sit','false');
+          }
+          else {
+              this.state = {
+              url: "https://pizza.cs.ualberta.ca/296/",
+              token: "tpYCGn9+pPJuG4jN4n5VPm4K86THIpS/KzIYpViOfXY=",
+              status: localStorage.getItem('status'),
+              session: localStorage.getItem('session'),
+              money: localStorage.getItem('money'),
+              bet_amount: localStorage.getItem('bet_amount'),
+              result: localStorage.getItem('result'),
+              bet: localStorage.getItem('bet'),
+              made: localStorage.getItem('made'),
+              dealer_card:[],
+              player_hand:[],
+              place: localStorage.getItem('place'),
+              enter_money: localStorage.getItem('enter_money'),
+              stand: JSON.parse(localStorage.getItem('stand')),
+              hit: JSON.parse(localStorage.getItem('hit')),
+              double_down: JSON.parse(localStorage.getItem('double_down')),
+              surrender: JSON.parse(localStorage.getItem('surrender')) };
+
+              this.post_request('/','true');
+          }
+
+          this.bet = this.bet.bind(this);
+          this.stand = this.stand.bind(this);
+          this.hit = this.hit.bind(this);
+          this.double_down = this.double_down.bind(this);
+          this.surrender = this.surrender.bind(this);
+          this.handleChange = this.handleChange.bind(this);
+          this.post_request = this.post_request.bind(this);
+          this.changeCards = this.changeCards.bind(this);
+          this.end_game = this.end_game.bind(this);
+      }
+
+      changeCards(cards) {
+        var i;
+        for (i=0; i<cards.length; i++) {
+          if (cards[i] == 1) {
+            cards[i] = 'Ace';
+          }
+          else if (cards[i] == 11) {
+            cards[i] = 'J';
+          }
+          else if (cards[i] == 12) {
+            cards[i] = 'Q';
+          }
+          else if (cards[i] == 13) {
+            cards[i] = 'K';
+          }
+        }
+        return cards
+      }
+
+      handleChange(event) {
+        var value = event.target.value;
+        this.setState({bet_amount:value});
+      }
+
+      end_game(json){
+        this.setState({stand:JSON.parse(true)})
+        this.setState({hit:true})
+        this.setState({double_down:true})
+        this.setState({surrender:true})
+        this.setState({place:false})
+        this.setState({enter_money:false})
+        this.setState({made:json.last_game.won})
+        this.setState({money:json.money})
+        this.setState({result:json.last_game.result})
+        this.setState({bet:json.last_game.bet})
+
+        var dealer_hand=this.changeCards(json.last_game.dealer_hand,json.last_game.dealer_hand.length);
+        var player_hand=this.changeCards(json.last_game.player_hand,json.last_game.player_hand.length);
+
+        this.setState({dealer_hand:dealer_hand.join(",")});
+        this.setState({player_hand:player_hand.join(",")});
+      }
+
+      post_request(action, test){
+
+        var xhr = new XMLHttpRequest();
+        var param = encodeURIComponent(this.state.token);
+        var num = encodeURIComponent(this.state.bet_amount);
+        var that = this;
+
+        xhr.open("POST",this.state.url + this.state.session + action, true);
+
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function(){
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+          {
+            var json = JSON.parse(xhr.responseText);
+            that.setState({money:json.money});
+
+            localStorage.setItem('status',that.state.status);
+            localStorage.setItem('session',that.state.session);
+            localStorage.setItem('money',that.state.money);
+            localStorage.setItem('bet_amount',that.state.bet_amount);
+            localStorage.setItem('place',that.state.place);
+            localStorage.setItem('enter_money',that.state.enter_money);
+            localStorage.setItem('stand',that.state.stand);
+            localStorage.setItem('hit',that.state.hit);
+            localStorage.setItem('double_down',that.state.double_down);
+            localStorage.setItem('surrender',that.state.surrender);
+
+            console.log(json);
+            //after bet, there is blackjack, game end directly
+            if (typeof json.last_game != 'undefined') {
+              that.end_game(json);
+            }
+
+            if (typeof json.game != 'undefined') {
+
+              var dealer_hand=that.changeCards(json.game.dealer_hand);
+              var player_hand=that.changeCards(json.game.player_hand);
+
+              that.setState({dealer_hand:dealer_hand.join(",")});
+              that.setState({player_hand:player_hand.join(",")});
+            }
+
+            if(action == 'sit') {
+
+              that.setState({status:xhr.statusText})
+              that.setState({session:json.session})
+
+            }
+          }
+        }
+
+        if(test == 'false'){
+          xhr.send('token=' + param);
+        }
+        else if(test == 'true'){
+          xhr.send('token=' + param +  '&amount='+num);
+        }
+      }
+
+      bet() {
+        this.setState({bet:this.state.bet_amount});
+        this.setState(
+          {stand:false}
+        );
+        this.setState(
+          {hit:false}
+        );
+        this.setState({double_down:false});
+        this.setState({surrender:false});
+        this.setState({place:true});
+        this.setState({enter_money:true});
+        this.setState({result:""});
+        this.setState({made:""});
+        this.post_request('/bet','true');
+      }
+
+      stand(){
+       this.post_request('/stand','false');
+      }
+
+      double_down(){
+        this.post_request('/double_down','false');
+      }
+
+      surrender(){
+        this.post_request('/surrender','false');
+      }
+
+      hit(){
+        this.setState({surrender:true});
+        this.post_request('/hit','false');
+      }
+
+      render() {
+          return (
+          <div id="root">
+              <fieldset>
+                <p><label>Status: <output name="up">{this.state.status}</output></label></p>
+                <p><label>Session: <output name="session">{this.state.session}</output></label></p>
+              </fieldset>
+              <fieldset>
+                <p><label>Money: <output name="money">{this.state.money}</output></label></p>
+                <p>
+                  <label>Bet: <input disabled={this.state.enter_amount} name="bet" type="number" value={this.state.bet_amount} onChange={this.handleChange}/></label>
+                  <button type="button" disabled={this.state.place} name="betButton" value={this.state.bet_amount} onClick={this.bet}>Place Bet</button>
+                </p>
+              </fieldset>
+              <fieldset>
+                <p><label>Dealers Cards: <output name="dealer_hand">{this.state.dealer_hand}</output></label></p>
+                <p><label>Your Cards: <output name="player_hand">{this.state.player_hand}</output></label></p>
+                <p>
+                  <button disabled={this.state.stand} type="button" name="stand" onClick={this.stand}>Stand</button>
+                  <button disabled={this.state.hit} type="button" name="hit" onClick={this.hit}>Hit</button>
+                  <button disabled={this.state.double_down} type="button" name="double_down" onClick={this.double_down}>Double Down</button>
+                  <button disabled={this.state.surrender} type="button" name="surrender" onClick={this.surrender}>Surrender</button>
+                </p>
+                <p>
+                  <label>Result: <output name="result">{this.state.result}</output></label><br/>
+                  <label>You bet: <output name="last_bet">{this.state.bet}</output></label><br/>
+                  <label>You made: <output name="won">{this.state.made}</output></label><br/>
+                </p>
+              </fieldset>
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(<Gambler/>, document.getElementById('root'));
+
+  </script>
+
+    <footer>
+      <br/> <br/>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/ca/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nd/2.5/ca/88x31.png" /></a><br />This work is by Xiaohui Liu, licensed under
+    	a <a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/ca/">Creative Commons Attribution-NoDerivs 2.5 Canada License</a>.
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+body{
+    position: absolute;
+    left: 220px;
+    background-color: coral;
+    font-family: fantasy;
+    font-size: 120%;
+    line-height: 70px;
+    color: rgb(18, 115, 211);
+}
+h1 {
+    text-align: center;
+    color: rgb(226, 19, 226);
+}
+h2{
+    background-color: brown;
+    font-family: Calibri;
+    font-style: oblique;
+    color: rgb(23, 207, 103);
+}
+#float_my_photo {
+    float: right;
+    border-color: rgb(241, 9, 241);
+    border-style: double;
+    border-width: 10px;
+}
+#float_my_name {
+    float: left;
+    border-color: rgb(9, 32, 241);
+    border-style: dashed double;
+    border-width: 8px;
+    padding-left: 2px;
+}
+#my_photo_style{
+    height: 400px;
+    width: 300px;
+}
+#my_name_style{
+    width: 180px;
+    height: 180px;
+}
+figcaption {
+    padding: 5px;
+    font-family: 'Cherry Swash', cursive;
+    font-size: 1em;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    word-wrap:normal;
+    text-align: center;
+    line-height: 40px;
+}
+#sidebar {
+    background-color: rgb(195, 173, 230);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+#history_style {
+    background-color: antiquewhite;
+}
+#contact_style {
+    background-color: rgb(156, 120, 42);
+    font-style: italic;
+    color: rgb(138, 37, 37);
+}
+.footer_style {
+    font-size: 0.95rem;
+    font-family: serif;
+    background-color: greenyellow;
+    font-weight: bolder;
+}
+.first_letter::first-letter {
+    background-color: rgb(0, 255, 85);
+    font-size: 180%;
+    font-weight: bold;
+}

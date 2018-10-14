@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/* Here are the default styles. */
+html {
+    font-family: Comic Sans MS, fantasy;
+    background-color: magenta;
+    color: white;
+}
+body {
+    font-family: sans-serif;
+    background-color: white;
+    color: black;
+}
+blockquote {
+	text-align-last: center;
+}
+.bridge-section {
+	font-size: 10px;
+	margin-left: 1em;
+	color: orange;
+	font-style: bold;
+}
+/* Add styles here: */

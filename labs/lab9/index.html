@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX example</title>
+  <style>
+    label {
+      display: block;
+    }
+
+    output {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="main-title"> AJAX calculator </h1>
+  <form id="input-form" method="GET" action="/calc/">
+    <label>
+      a =  <input name="a" type="number" value="2" />
+    </label>
+    <label>
+      b =  <input name="b" type="number" value="2" />
+    </label>
+    <label>
+      a <select name="op">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">⨉</option>
+          <option value="/">÷</option>
+      </select> b
+    </label>
+    <input type="submit" value="Calculate" />
+  </form>
+
+  <output id="the-answer"></output>
+
+  <script>
+    var form = document.getElementById('input-form');
+    form.addEventListener('submit', function(event) {
+      alert("Form submitted!");
+      xhr.send();
+      event.preventDefault();
+    });
+
+    var url = "http://localhost:8000/calc/";
+    a = form.elements["a"].value;
+    b = form.elements["b"].value;
+    op = encodeURIComponent(form.elements["op"].value);
+    url = url + "?"+"a="+a +"&"+ "b="+b +"&"+ "op="+op;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onload = function() {
+      var output = document.getElementById('the-answer');
+      output = xhr.responseText
+      alert(output);
+    };
+  </script>
+</body>
+
+</html>

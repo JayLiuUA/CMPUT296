@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+Collaborating Student: Yuan Wang
+Sources:
+MDN Web Docs, https://developer.mozilla.org/en-US/docs/Web/HTML/Element (html5 tags)
+Susan Ireland's Resume Site, https://susanireland.com/job-lounge/sample-resume-summary-statements-experience/ (resume)
+Ryan Boudreaux, https://www.techrepublic.com/blog/web-designer/html5-figure-and-figure-caption-elements/ (figcaption)
+Anonymous, https://codepen.io/anon/pen/oxZeqx (sidebar)
+W3SCHOOLS, https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_mailto (mailto)
+admin, http://www.uml.org.cn/html/201207274.asp (sidebar in good.css)
+author not specifed, http://typespiration.com/design/the-signal/ (h1 style)
+author not specifed, http://typespiration.com/design/the-device/ (a tag style)
+-->
+
+<html lang = "en">
+	<head>
+	<meta charset="UTF-8"/>
+    <title> Introduction to Myself </title>
+    <link rel="stylesheet" href= "ugly.css" />
+    </head>
+
+	<body>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/ca/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nd/2.5/ca/88x31.png" /></a><br />This work is by Xiaohui Liu, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/ca/">Creative Commons Attribution-NoDerivs 2.5 Canada License</a>.
+
+    <h1>My Introduction</h1>
+    <nav id="sidebar">
+       <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact Info</a></li>
+        </ul>
+    </nav>
+
+    <section>
+    <h2 id="intro"> WHO AM I ? </h2>
+        <figure id="float_my_photo">
+            <img id="my_photo_style" src="my_photo.jpg" alt="Me in Vancouver">
+            <figcaption> Me at a beach in Vancouver </figcaption>
+        </figure>
+        <figure id="float_my_name">
+            <img id="my_name_style" src="my_name.jpg" alt="my name written">
+            <figcaption> My name hand written in <br/> old fashion Chinese </figcaption>
+        </figure>
+    <p class = "first_letter">
+        My name is Xiaohui Liu, written as 刘潇辉 (you can call me Jay instead). <br/>
+        My name is probably hard to pronounce for you since it is a Chinese name. <br/>
+        I am from Kaifeng, Henan province, China. Kaifeng is a city that has over three thousands years history. It had been the capital of
+        7 different dynasties/kingdoms in Chinese history. <br/>
+        I am currently studying Computing Science in the University of Alberta located in Edmonton, Canada. <br/>
+         Canada is a very young country comparing to my home country, but Canada is awesome and I love it! <br/>
+        My favourite animal is cat. I love cats! <br/>
+    </p>
+    </section>
+
+    <section>
+    <h2 id="history"> WHAT HAVE I DONE ?</h2>
+    <p id="history_style">
+        -Graduated from Sino Bright School, Kaifeng, China. <br/>
+        -Volunteer in several international Marathon matches.<br/>
+        -Strong background in business field including accounting, organization management, and human resources management.<br/>
+        -Bilingual (Madarin and English) professional with a strong record of academic and hand-on work performance.<br/>
+        -Over 3 years of exprience of programming in Python, C language, and Java.<br/>
+        -Strong background in algorithm analysis and software management.<br/>
+        -Awarded Internation Student Scholarship in the University of Alberta.<br/>
+
+    <h2 id="skills"> WHAT CAN I DO? </h2>
+    <p>I am able to help my employer develop softwares, since I have great experience in programming. <br/>
+        I am definitely a team worker. I love being in a team of programmers and sharing ideas. Brain Storm is the best.<br/>
+        I believe team work is the most efficient way to do things. <br/>
+        Human resources management is another job that I can do well. I can help my employer manage employees and distribute the work reasonably.<br/>
+        I can communicate with clients from China with no issues. <br/></p>
+    </section>
+
+    <section>
+    <h2 id="contact"> Contact Information </h2>
+    <p id="contact_style">Email to: <a href="mailto:xiaohui1@ualberta.ca" target="_top">xiaohui1@ualberta.ca</a> <br/>
+        Mobile Phone: 780-1234567 <br/>
+    Home Address: 116 St & 85 Ave, Edmonton, AB
+    <a href="https://www.google.ca/search?rlz=1C5CHFA_enCA719CA719&ei=byGfWuyxGaGW0gL6pbxA&q=university%20of%20alberta%20address&oq=university+of+alberta+add&gs_l=psy-ab.1.0.0i203k1l3j0i30k1l6j0i5i30k1.21849.24106.0.25108.8.7.1.0.0.0.139.645.6j1.7.0....0...1c.1.64.psy-ab..0.8.662...0j35i39k1j0i67k1j0i10i203k1j0i7i30k1.0.Pu2KmCB_6JQ&npsic=0&rflfq=1&rlha=0&rllag=53526440,-113527150,379&tbm=lcl&rldimm=14653417905192415763&ved=0ahUKEwiKvqCs6tjZAhWq5lQKHVqmAk8QvS4IQjAA&rldoc=1&tbs=lrf:!2m4!1e17!4m2!17m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:4#rlfi=hd:;si:14653417905192415763;mv:!1m3!1d11363.493464092458!2d-113.5128824!3d53.53077625!2m3!1f0!2f0!3f0!3m2!1i429!2i460!4f13.1;tbs:lrf:!2m1!1e3!2m4!1e17!4m2!17m1!1e2!3sIAE,lf:1,lf_ui:4">
+              (Click here to see where it is!)</a> <br/>
+        Zip Code: T6J-3A1 <br/>
+    </p>
+    </section>
+
+	<footer class="footer_style">
+		Copyright &copy; 2018 Xiaohui Liu.
+    </footer>
+</body>
+
+</html>

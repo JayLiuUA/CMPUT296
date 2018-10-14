@@ -1,0 +1,12 @@
+@charset "UTF-8";
+html {
+    font-family: Comic Sans MS;
+}
+.rotated {
+display: inline-block;
+transform: rotate(-12deg);
+}
+.first_letter::first-letter {
+	background-color: pink;
+	font-size: 180%;
+}
